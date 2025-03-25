@@ -1,7 +1,7 @@
 from src.helper import load_pdf_file, text_split, download_hugging_face_embeddings
 from pinecone.grpc import PineconeGRPC as Pinecone
 from pinecone import ServerlessSpec
-from langchain_pinecone import PineconeVectorStore
+from langchain.vectorstores import Pinecone
 from dotenv import load_dotenv
 import os
 
@@ -33,7 +33,7 @@ pc.create_index(
 ) 
 
 # Embed each chunk and upsert the embeddings into your Pinecone index.
-docsearch = PineconeVectorStore.from_documents(
+docsearch = Pinecone.from_documents(
     documents=text_chunks,
     index_name=index_name,
     embedding=embeddings, 
