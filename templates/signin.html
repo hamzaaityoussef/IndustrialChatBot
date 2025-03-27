@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>MediMind - Sign In</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  
+  <style>
+    .auth-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4eff9 100%);
+      padding: 40px 0;
+    }
+    
+    .auth-card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    
+    .auth-header {
+      background-color: #3984ff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .auth-body {
+      padding: 30px;
+    }
+    
+    .form-control {
+      border-radius: 8px;
+      padding: 12px 15px;
+      margin-bottom: 15px;
+      border: 1px solid #e1e1e1;
+    }
+    
+    .form-control:focus {
+      box-shadow: 0 0 0 3px rgba(57, 132, 255, 0.2);
+      border-color: #3984ff;
+    }
+    
+    .btn-primary {
+      background-color: #3984ff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 15px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      background-color: #2970e6;
+      transform: translateY(-2px);
+    }
+    
+    .form-label {
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #4a4a4a;
+    }
+    
+    .alert {
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    
+    .auth-footer {
+      text-align: center;
+      margin-top: 20px;
+      color: #6c757d;
+    }
+    
+    .auth-footer a {
+      color: #3984ff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .auth-footer a:hover {
+      text-decoration: underline;
+    }
+    
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 25px 0;
+      color: #6c757d;
+    }
+    
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      border-bottom: 1px solid #e1e1e1;
+    }
+    
+    .divider::before {
+      margin-right: 10px;
+    }
+    
+    .divider::after {
+      margin-left: 10px;
+    }
+    
+    .social-login {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      background-color: white;
+      border: 1px solid #e1e1e1;
+      color: #4a4a4a;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .social-btn:hover {
+      background-color: #f8f9fa;
+      transform: translateY(-2px);
+    }
+    
+    .social-btn i {
+      margin-right: 10px;
+      font-size: 18px;
+    }
+    
+    .google-btn i {
+      color: #DB4437;
+    }
+    
+    .back-home {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: #3984ff;
+      font-weight: 500;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    
+    .back-home i {
+      margin-right: 5px;
+    }
+    
+    @media (max-width: 768px) {
+      .back-home {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-bottom: 20px;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="auth-container">
+    <a href="{{ url_for('home') }}" class="back-home">
+      <i class="bi bi-arrow-left"></i> Back to Home
+    </a>
+    
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-5">
+          <div class="auth-card card">
+            <div class="auth-header">
+              <h3 class="mb-0">Welcome Back!</h3>
+              <p class="mb-0">Sign in to access your MediMind account</p>
+            </div>
+            <div class="auth-body">
+              <!-- Flash Messages -->
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                      {{ message }}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+              
+              <form method= "post" action="{{ url_for('signin') }}" >
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email Address</label>
+                  <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                  <label class="form-check-label" for="remember">Remember me</label>
+                </div>
+                <div class="d-grid gap-2">
+                  <button type="submit" class="btn btn-primary">Sign In</button>
+                </div>
+              </form>
+              
+              <div class="divider">or</div>
+              
+              <div class="row social-login">
+                <div class="col-12">
+                  <button class="social-btn google-btn">
+                    <i class="bi bi-google"></i> Sign in with Google
+                  </button>
+                </div>
+              </div>
+              
+              <div class="auth-footer">
+                <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign Up</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

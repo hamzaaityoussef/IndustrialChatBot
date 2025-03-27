@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>MediMind - Your AI Medical Assistant</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header sticky-top">
+
+    <!-- <div class="topbar d-flex align-items-center">
+      <div class="container d-flex justify-content-center justify-content-md-between">
+        <div class="contact-info d-flex align-items-center">
+          <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:khayatidiae67@gmail.com">khayatidiae67@gmail.com</a></i>
+          <i class="bi bi-phone d-flex align-items-center ms-4"><span>+212 6 23 71 29 67</span></i>
+        </div>
+        <div class="social-links d-none d-md-flex align-items-center">
+          <a href="#" class="twitter"><i class="bi bi-github"></i></a>
+          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div>End Top Bar -->
+
+    <div class="branding d-flex align-items-cente">
+
+      <div class="container position-relative d-flex align-items-center justify-content-between">
+        <a href="index.html" class="logo d-flex align-items-center">
+          <!-- Uncomment the line below if you also wish to use an image logo -->
+          <!-- <img src="assets/img/logo.png" alt=""> -->
+          <h1 class="sitename">MediMind</h1>
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+            <ul>
+              <li><a href="#hero" class="active">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#contact">Contact</a></li>
+            
+            <div class="signin-btn ms-3">
+                <ul>
+              {% if 'user_id' in session %}
+                <li></li><a href="/profile" class="btn btn-outline-primary me-2">Profile</a></li>
+                <li><a href="/MediMind" class="btn btn-primary me-2">Chat</a></li>
+                <li><a href="/logout" class="btn btn-danger" style="width: 75px;">Logout</a></li>
+              {% else %}
+                <a href="/signin" class="btn btn-primary">Sign In</a>
+              {% endif %}
+            </ul>
+            </div>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </ul>
+          </nav>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section light-background">
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-8 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
+            <h1>Welcome to <span>MediMind</span></h1>
+            <p>Your health companion, providing AI-powered medical assistance anytime, anywhere.</p>
+            <div class="d-flex">
+              <a href="#about" class="btn-get-started">Get Started</a>
+              <!-- <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- Featured Services Section -->
+    <section id="featured-services" class="featured-services section">
+        <div class="container">
+          <div class="row gy-4">
+  
+            <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+              <div class="service-item position-relative">
+                <div class="icon"><i class="bi bi-chat-square-text icon"></i></div>
+                <h4><a href="" class="stretched-link">Medical Knowledge Assistant</a></h4>
+                <p>Get accurate and concise medical information powered by advanced AI technology</p>
+              </div>
+            </div><!-- End Service Item -->
+  
+            <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+              <div class="service-item position-relative">
+                <div class="icon"><i class="bi bi-search icon"></i></div>
+                <h4><a href="" class="stretched-link">Context-Aware Responses</a></h4>
+                <p>Utilizes relevant medical context to provide accurate and tailored answers to your questions</p>
+              </div>
+            </div><!-- End Service Item -->
+  
+            <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+              <div class="service-item position-relative">
+                <div class="icon"><i class="bi bi-shield-check icon"></i></div>
+                <h4><a href="" class="stretched-link">Professional Medical Information</a></h4>
+                <p>Clear, professional, and focused responses based on reliable medical knowledge</p>
+              </div>
+            </div><!-- End Service Item -->
+  
+            <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
+              <div class="service-item position-relative">
+                <div class="icon"><i class="bi bi-clock icon"></i></div>
+                <h4><a href="" class="stretched-link">24/7 Availability</a></h4>
+                <p>Access medical information and get answers to your questions anytime, anywhere</p>
+              </div>
+            </div><!-- End Service Item -->
+  
+          </div>
+        </div>
+      </section><!-- /Featured Services Section -->
+    <!-- About Section -->
+<section id="about" class="about section light-background">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>About</h2>
+      <p><span>Discover</span> <span class="description-title">MediMind</span></p>
+    </div><!-- End Section Title -->
+  
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+          <img src="assets/img/about.jpg" alt="MediMind AI Assistant" class="img-fluid">
+        </div>
+  
+        <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="about-content ps-0 ps-lg-3">
+            <h3>Your Intelligent Medical Knowledge Assistant Available 24/7</h3>
+            <p class="fst-italic">
+              MediMind combines advanced AI technology with comprehensive medical knowledge to provide you with accurate, reliable, and instant medical information.
+            </p>
+            <ul>
+              <li>
+                <i class="bi bi-robot"></i>
+                <div>
+                  <h4>Advanced AI Technology</h4>
+                  <p>Powered by state-of-the-art language models and medical knowledge retrieval systems to provide accurate responses</p>
+                </div>
+              </li>
+              <li>
+                <i class="bi bi-shield-check"></i>
+                <div>
+                  <h4>Reliable Medical Information</h4>
+                  <p>Access to a comprehensive medical knowledge base, ensuring accurate and up-to-date information for your queries</p>
+                </div>
+              </li>
+            </ul>
+            <p>
+              Whether you're seeking information about symptoms, medical conditions, or general health advice, MediMind is here to help. Our AI assistant provides concise, professional responses while maintaining the highest standards of medical information accuracy. Remember, while we provide valuable medical information, we always recommend consulting with healthcare professionals for personal medical advice.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- /About Section -->
+
+
+
+    
+
+
+
+   <!-- Services Section -->
+<section id="services" class="services section">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Services</h2>
+      <p><span>Our Medical</span> <span class="description-title">Services</span></p>
+    </div><!-- End Section Title -->
+  
+    <div class="container">
+      <div class="row gy-4">
+  
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-clipboard2-pulse"></i>
+            </div>
+            <a href="#" class="stretched-link">
+              <h3>Medical Information</h3>
+            </a>
+            <p>Access accurate and reliable medical information powered by advanced AI technology and comprehensive medical knowledge base.</p>
+          </div>
+        </div><!-- End Service Item -->
+  
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-chat-square-dots"></i>
+            </div>
+            <a href="#" class="stretched-link">
+              <h3>Instant Medical Assistance</h3>
+            </a>
+            <p>Get immediate responses to your medical questions with our AI-powered chat system available 24/7 for your convenience.</p>
+          </div>
+        </div><!-- End Service Item -->
+  
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <a href="#" class="stretched-link">
+              <h3>Professional Guidance</h3>
+            </a>
+            <p>Receive professional and concise medical information with clear explanations tailored to your specific questions.</p>
+          </div>
+        </div><!-- End Service Item -->
+  
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-search-heart"></i>
+            </div>
+            <a href="#" class="stretched-link">
+              <h3>Contextual Understanding</h3>
+            </a>
+            <p>Our AI system analyzes your questions in context, providing relevant and accurate medical information based on your specific needs.</p>
+          </div>
+        </div><!-- End Service Item -->
+  
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-database-check"></i>
+            </div>
+            <a href="#" class="stretched-link">
+              <h3>Reliable Information</h3>
+            </a>
+            <p>Access a vast database of medical knowledge, ensuring you receive accurate and up-to-date information for your queries.</p>
+          </div>
+        </div><!-- End Service Item -->
+  
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-person-hearts"></i>
+            </div>
+            <a href="#" class="stretched-link">
+              <h3>User-Friendly Experience</h3>
+            </a>
+            <p>Enjoy an easy-to-use interface that makes accessing medical information simple and straightforward for everyone.</p>
+          </div>
+        </div><!-- End Service Item -->
+  
+      </div>
+    </div>
+  </section><!-- /Services Section -->
+
+    
+
+
+    
+
+ <!-- Pricing Section -->
+<section id="pricing" class="pricing section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Pricing</h2>
+      <p><span>Our Flexible</span> <span class="description-title">Pricing Plans</span></p>
+    </div><!-- End Section Title -->
+  
+    <div class="container">
+  
+      <div class="row gy-3">
+  
+        <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="pricing-item">
+            <h3>Basic</h3>
+            <h4><sup>$</sup>0<span> / month</span></h4>
+            <ul>
+              <li>Basic medical queries</li>
+              <li>General health information</li>
+              <li>Limited daily consultations</li>
+              <li class="na">Specialized medical knowledge</li>
+              <li class="na">Priority response</li>
+            </ul>
+            <div class="btn-wrap">
+              <a href="#" class="btn-buy">Get Started</a>
+            </div>
+          </div>
+        </div><!-- End Pricing Item -->
+  
+        <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="pricing-item featured">
+            <h3>Standard</h3>
+            <h4><sup>$</sup>9<span> / month</span></h4>
+            <ul>
+              <li>Advanced medical queries</li>
+              <li>Detailed health information</li>
+              <li>Unlimited consultations</li>
+              <li>Specialized medical knowledge</li>
+              <li class="na">Priority response</li>
+            </ul>
+            <div class="btn-wrap">
+              <a href="#" class="btn-buy">Subscribe Now</a>
+            </div>
+          </div>
+        </div><!-- End Pricing Item -->
+  
+        <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="pricing-item">
+            <h3>Premium</h3>
+            <h4><sup>$</sup>19<span> / month</span></h4>
+            <ul>
+              <li>Comprehensive medical queries</li>
+              <li>In-depth health information</li>
+              <li>Unlimited consultations</li>
+              <li>Specialized medical knowledge</li>
+              <li>Priority response</li>
+            </ul>
+            <div class="btn-wrap">
+              <a href="#" class="btn-buy">Subscribe Now</a>
+            </div>
+          </div>
+        </div><!-- End Pricing Item -->
+  
+        <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="400">
+          <div class="pricing-item">
+            <span class="advanced">Advanced</span>
+            <h3>Enterprise</h3>
+            <h4><sup>$</sup>99<span> / month</span></h4>
+            <ul>
+              <li>Custom medical knowledge base</li>
+              <li>Healthcare team integration</li>
+              <li>Multiple user accounts</li>
+              <li>Admin dashboard & analytics</li>
+              <li>Dedicated support</li>
+            </ul>
+            <div class="btn-wrap">
+              <a href="#" class="btn-buy">Contact Us</a>
+            </div>
+          </div>
+        </div><!-- End Pricing Item -->
+  
+      </div>
+  
+    </div>
+  
+  </section><!-- /Pricing Section -->
+
+    <!-- Faq Section -->
+<section id="faq" class="faq section light-background">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>F.A.Q</h2>
+      <p><span>Frequently Asked</span> <span class="description-title">Questions</span></p>
+    </div><!-- End Section Title -->
+  
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+          <div class="faq-container">
+  
+            <div class="faq-item faq-active">
+              <h3>How accurate is the medical information provided by MediMind?</h3>
+              <div class="faq-content">
+                <p>MediMind provides highly accurate medical information by utilizing advanced AI technology and a comprehensive medical knowledge base. Our system combines state-of-the-art language models with specialized medical knowledge retrieval to ensure reliable responses. However, we always recommend consulting healthcare professionals for personalized medical advice and diagnosis.</p>
+              </div>
+              <i class="faq-toggle bi bi-chevron-right"></i>
+            </div><!-- End Faq item-->
+  
+            <div class="faq-item">
+              <h3>Can MediMind replace a consultation with a doctor?</h3>
+              <div class="faq-content">
+                <p>No, MediMind is designed to provide medical information and general health knowledge, but it cannot and should not replace professional medical advice, diagnosis, or treatment. Our AI assistant is meant to be an informational resource only. Always consult with qualified healthcare professionals for medical concerns, diagnosis, and treatment options.</p>
+              </div>
+              <i class="faq-toggle bi bi-chevron-right"></i>
+            </div><!-- End Faq item-->
+  
+            <div class="faq-item">
+              <h3>How does MediMind protect my privacy and personal information?</h3>
+              <div class="faq-content">
+                <p>MediMind takes data privacy very seriously. We follow strict security protocols and adhere to healthcare data protection standards. Your queries are processed securely, and we do not store personal health information without explicit consent. Our privacy policy outlines how we handle your data, and we're committed to maintaining the confidentiality of all user interactions.</p>
+              </div>
+              <i class="faq-toggle bi bi-chevron-right"></i>
+            </div><!-- End Faq item-->
+  
+            <div class="faq-item">
+              <h3>What types of medical questions can MediMind answer?</h3>
+              <div class="faq-content">
+                <p>MediMind can provide information on a wide range of medical topics including symptoms, conditions, treatments, medications, preventive care, and general health advice. Our system is designed to understand medical terminology and provide concise, professional responses. However, for complex or emergency medical situations, please seek immediate professional medical assistance.</p>
+              </div>
+              <i class="faq-toggle bi bi-chevron-right"></i>
+            </div><!-- End Faq item-->
+  
+            <div class="faq-item">
+              <h3>What technology powers MediMind's AI medical assistant?</h3>
+              <div class="faq-content">
+                <p>MediMind is powered by cutting-edge technologies including advanced language models like Llama and vector search systems like Pinecone. We use a sophisticated retrieval-augmented generation approach that first searches for relevant medical information from trusted sources and then generates accurate, contextual responses tailored to your specific questions.</p>
+              </div>
+              <i class="faq-toggle bi bi-chevron-right"></i>
+            </div><!-- End Faq item-->
+  
+            <div class="faq-item">
+              <h3>Does MediMind offer customer support if I have issues or questions?</h3>
+              <div class="faq-content">
+                <p>Yes, MediMind provides customer support for all users. If you encounter any issues or have questions about our service, you can reach our support team through the contact form on our website or via email. Premium and Enterprise plan subscribers receive priority support with faster response times and dedicated assistance.</p>
+              </div>
+              <i class="faq-toggle bi bi-chevron-right"></i>
+            </div><!-- End Faq item-->
+  
+          </div>
+        </div><!-- End Faq Column-->
+      </div>
+    </div>
+  
+  </section><!-- /Faq Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p><span>Need Help?</span> <span class="description-title">Contact Us</span></p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-5">
+
+            <div class="info-wrap">
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <div>
+                  <h3>Address</h3>
+                  <p>Abderahman El Youssfi St , Tangier</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                <i class="bi bi-telephone flex-shrink-0"></i>
+                <div>
+                  <h3>Call Us</h3>
+                  <p>+212 6 23 71 29 67</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h3>Email Us</h3>
+                  <p>khayatidiae67@gmail.com</p>
+                </div>
+              </div><!-- End Info Item -->
+
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <label for="name-field" class="pb-2">Your Name</label>
+                  <input type="text" name="name" id="name-field" class="form-control" required="">
+                </div>
+
+                <div class="col-md-6">
+                  <label for="email-field" class="pb-2">Your Email</label>
+                  <input type="email" class="form-control" name="email" id="email-field" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <label for="subject-field" class="pb-2">Subject</label>
+                  <input type="text" class="form-control" name="subject" id="subject-field" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <label for="message-field" class="pb-2">Message</label>
+                  <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                  <button type="submit">Send Message</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Contact Form -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
