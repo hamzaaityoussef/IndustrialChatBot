@@ -1,7 +1,5 @@
 # MediMind - AI Medical Assistant 🤖💊
 
-![MediMind Logo](assets/img/logo.png) <!-- Add your logo if available -->
-
 MediMind is an AI-powered medical assistant that provides accurate and reliable medical information using advanced natural language processing and retrieval-augmented generation.
 
 ## Features ✨
@@ -48,7 +46,9 @@ source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 
 3.Install dependencies:
    ```bash
-pip install -r requirements.txt
+   pip install -r requirements.txt 
+```
+
 
 4.Set up environment variables:
 Create a .env file in the root directory with:
@@ -57,11 +57,11 @@ FLASK_SECRET_KEY=your_secret_key_here
 MONGO_URI=mongodb://localhost:27017/medimindDB
 PINECONE_API_KEY=your_pinecone_api_key
 GROQ_API_KEY=your_groq_api_key
-
+```
 5.Run the application:
 ```bash
 python app.py
-
+```
 
 
    
