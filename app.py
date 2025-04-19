@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for, session, flash
 from langchain_community.vectorstores import Pinecone
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
+
 from dotenv import load_dotenv
 import os
 from groq import Groq
