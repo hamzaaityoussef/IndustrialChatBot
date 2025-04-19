@@ -1,5 +1,8 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for, session, flash
-from langchain_community.vectorstores import Pinecone
+# from langchain_community.vectorstores import Pinecone
+from langchain_pinecone import PineconeVectorStore
+from pinecone import Pinecone as PineconeClient
+
 from langchain_huggingface import HuggingFaceEmbeddings
 
 from dotenv import load_dotenv
@@ -38,11 +41,19 @@ client = Groq(
 embeddings = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 
 # Initialize Pinecone
-index_name = "medimind"
-docsearch = Pinecone.from_existing_index(
-    index_name=index_name,
-    embedding=embeddings
+# Initialize Pinecone client
+pc = PineconeClient(api_key=PINECONE_API_KEY)
+
+# Get index
+index = pc.Index("medimind")  # Assumes it already exists
+
+# Load it into LangChain vector store
+docsearch = PineconeVectorStore(
+    index=index,
+    embedding=embeddings,
+    text_key="text"  # or whatever key you stored documents under
 )
+
 
 # Create retriever
 retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 3})

@@ -1,7 +1,7 @@
 from src.helper import load_pdf_file, text_split, download_hugging_face_embeddings
-from pinecone.grpc import PineconeGRPC as Pinecone
+from pinecone.grpc import PineconeGRPC   # <-- Use this for creating index
 from pinecone import ServerlessSpec
-from langchain.vectorstores import Pinecone
+from langchain.vectorstores import Pinecone as LangchainPinecone  # <-- Avoid name conflict
 from dotenv import load_dotenv
 import os
 
@@ -17,24 +17,22 @@ text_chunks=text_split(extracted_data)
 embeddings = download_hugging_face_embeddings()
 
 
-pc = Pinecone(api_key=PINECONE_API_KEY)
+# Initialize Pinecone GRPC client
+pc = PineconeGRPC(api_key=PINECONE_API_KEY)
 
+# Create index if it doesn't exist
 index_name = "medimind"
+if index_name not in pc.list_indexes().names():
+    pc.create_index(
+        name=index_name,
+        dimension=384,
+        metric="cosine",
+        spec=ServerlessSpec(cloud="aws", region="us-east-1")
+    )
 
-
-pc.create_index(
-    name=index_name,
-    dimension=384, 
-    metric="cosine", 
-    spec=ServerlessSpec(
-        cloud="aws", 
-        region="us-east-1"
-    ) 
-) 
-
-# Embed each chunk and upsert the embeddings into your Pinecone index.
-docsearch = Pinecone.from_documents(
+# Embed documents and upsert into Pinecone index using Langchain
+docsearch = LangchainPinecone.from_documents(  # ✅ use alias
     documents=text_chunks,
     index_name=index_name,
-    embedding=embeddings, 
+    embedding=embeddings
 )
