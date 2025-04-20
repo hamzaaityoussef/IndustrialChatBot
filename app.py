@@ -36,7 +36,6 @@ os.environ["GROQ_API_KEY"] = GROQ_API_KEY
 client = Groq(
     api_key=os.getenv("GROQ_API_KEY"),
 )
-
 # Initialize embeddings
 embeddings = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 
@@ -105,10 +104,11 @@ def chat():
         
         # Create the prompt with context
         prompt = f"""You are a medical knowledge assistant specialized in providing accurate and concise medical information.
-Use the following pieces of retrieved context to answer the medical question.
-If you don't know the answer or if the context doesn't provide enough information, say that you don't know.
-Keep your answers concise (3-4 sentences maximum) and focused on medical facts.
-Always maintain a professional and clear tone.
+        Use the following pieces of retrieved context to answer the medical question.
+        If the context doesn't provide enough information, use your own medical knowledge to provide a helpful and accurate answer.
+        Keep your answers concise (3-4 sentences maximum) and focused on medical facts.
+        Always maintain a professional and clear tone.
+        Respond in Arabic.
 
 Context: {context}
 
