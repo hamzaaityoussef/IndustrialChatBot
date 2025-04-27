@@ -36,7 +36,7 @@ MediMind is an AI-powered medical assistant that provides accurate and reliable 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/MediMind.git
+   git clone https://github.com/hamzaaityoussef/MedAccessAI.git
    cd MediMind
 
 2. Create and activate a virtual environment:
