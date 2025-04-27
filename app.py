@@ -82,9 +82,7 @@ def favicon():
 def home():
     return render_template('home.html')
 
-# @app.route("/signin")
-# def signin():
-#     return render_template('signin.html')
+
 
 @app.route("/MediMind")
 def index():
@@ -176,50 +174,6 @@ def signup():
     
     return render_template('signup.html')
 
-# User login
-# @app.route('/signin', methods=['GET', 'POST'])
-# def signin():
-#     if request.method == 'GET':
-#         print('salam')
-#         return render_template('signin.html')
-    
-#     if request.method == 'POST':
-#         # Get form data
-#         email = request.form.get('email')
-#         password = request.form.get('password')
-#         remember = True if request.form.get('remember') else False
-        
-#         # Find user by email
-#         user = mongo.db.users.find_one({'email': email})
-        
-#         # Check if user exists and password is correct
-#         if user and bcrypt.check_password_hash(user['password'], password):
-#             # Create session
-#             session['user_id'] = str(user['_id'])
-#             session['username'] = user['username']
-#             session['email'] = user['email']
-            
-#             # Set session expiry if remember me is not checked
-#             if not remember:
-#                 session.permanent = True
-#                 app.permanent_session_lifetime = timedelta(minutes=60)
-            
-#             # Update last login time
-#             mongo.db.users.update_one(
-#                 {'_id': user['_id']},
-#                 {'$set': {'last_login': datetime.now()}}
-#             )
-            
-#             flash('Logged in successfully!', 'success')
-#             return redirect(url_for('index'))
-#         else:
-#             flash('Invalid email or password', 'danger')
-#             return redirect(url_for('signin'))
-    
-#     # This return statement shouldn't be reached, but it's a good fallback
-#     return render_template('signin.html')
-
-
 
 
 @app.route('/signin', methods=['GET', 'POST'])
@@ -256,28 +210,30 @@ def logout():
     return redirect(url_for('home'))
 
 # Profile route
-@app.route('/profile')
-def profile():
-    if 'user_id' not in session:
-        flash('Please login to access this page', 'warning')
-        return redirect(url_for('signin'))
+# @app.route('/profile')
+# def profile():
+#     if 'user_id' not in session:
+#         flash('Please login to access this page', 'warning')
+#         return redirect(url_for('signin'))
     
-    # Get user data
-    user = mongo.db.users.find_one({'email': session['email']})
+#     # Get user data
+#     user = mongo.db.users.find_one({'email': session['email']})
     
-    # Get chat history for this user
-    chat_history = list(mongo.db.chat_history.find(
-        {'user_id': session['user_id']},
-        sort=[('timestamp', -1)],
-        limit=5
-    ))
-    # Get total number of chats
-    chat_count = mongo.db.chat_history.count_documents({'user_id': session['user_id']})
+#     # Get chat history for this user
+#     chat_history = list(mongo.db.chat_history.find(
+#         {'user_id': session['user_id']},
+#         sort=[('timestamp', -1)],
+#         limit=5
+#     ))
+#     # Get total number of chats
+#     chat_count = mongo.db.chat_history.count_documents({'user_id': session['user_id']})
     
-    # Add chat count to user data for display
-    user['chat_count'] = chat_count
+#     # Add chat count to user data for display
+#     user['chat_count'] = chat_count
     
-    return render_template('profile.html', user=user, chat_history=chat_history)
+#     return render_template('profile.html', user=user, chat_history=chat_history)
+
+
 
 # Route middleware to check if user is logged in
 def login_required(route_function):
