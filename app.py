@@ -16,8 +16,8 @@ from datetime import datetime, timedelta
 
 app = Flask(__name__, static_folder='assets')
 app.secret_key = os.urandom(24)  # For session management
-app.config["MONGO_URI"] = "mongodb://localhost:27017/medimindDB"  # Replace with your MongoDB URI
-mongo = PyMongo(app)
+# app.config["MONGO_URI"] = "mongodb://localhost:27017/industryDB"  # Replace with your MongoDB URI
+# mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
 
 
@@ -39,12 +39,12 @@ client = Groq(
 # Initialize embeddings
 embeddings = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 
-# Initialize Pinecone
+
 # Initialize Pinecone client
 pc = PineconeClient(api_key=PINECONE_API_KEY)
 
 # Get index
-index = pc.Index("medimind")  # Assumes it already exists
+index = pc.Index("industrial")  # Assumes it already exists
 
 # Load it into LangChain vector store
 docsearch = PineconeVectorStore(
@@ -103,12 +103,12 @@ def chat():
         context = "\n\n".join([doc.page_content for doc in docs])
         
         # Create the prompt with context
-        prompt = f"""You are a medical knowledge assistant specialized in providing accurate and concise medical information.
-        Use the following pieces of retrieved context to answer the medical question.
-        If the context doesn't provide enough information, use your own medical knowledge to provide a helpful and accurate answer.
-        Keep your answers concise (3-4 sentences maximum) and focused on medical facts.
+        prompt = f"""You are an industrial knowledge assistant specialized in providing accurate and concise information about industrial equipment and technology.
+        Use the following pieces of retrieved context to answer the question.
+        If the context doesn't provide enough information, use your own knowledge to provide a helpful and accurate answer.
+        Keep your answers concise (3-4 sentences maximum) and focused on technical facts.
         Always maintain a professional and clear tone.
-        Respond in Arabic.
+        
 
 Context: {context}
 
@@ -125,7 +125,7 @@ Question: {msg}"""
                 'response': answer,
                 'timestamp': datetime.now()
             }
-            mongo.db.chat_history.insert_one(chat_message)
+            # mongo.db.chat_history.insert_one(chat_message)
             
         return str(answer)
     
@@ -177,48 +177,75 @@ def signup():
     return render_template('signup.html')
 
 # User login
+# @app.route('/signin', methods=['GET', 'POST'])
+# def signin():
+#     if request.method == 'GET':
+#         print('salam')
+#         return render_template('signin.html')
+    
+#     if request.method == 'POST':
+#         # Get form data
+#         email = request.form.get('email')
+#         password = request.form.get('password')
+#         remember = True if request.form.get('remember') else False
+        
+#         # Find user by email
+#         user = mongo.db.users.find_one({'email': email})
+        
+#         # Check if user exists and password is correct
+#         if user and bcrypt.check_password_hash(user['password'], password):
+#             # Create session
+#             session['user_id'] = str(user['_id'])
+#             session['username'] = user['username']
+#             session['email'] = user['email']
+            
+#             # Set session expiry if remember me is not checked
+#             if not remember:
+#                 session.permanent = True
+#                 app.permanent_session_lifetime = timedelta(minutes=60)
+            
+#             # Update last login time
+#             mongo.db.users.update_one(
+#                 {'_id': user['_id']},
+#                 {'$set': {'last_login': datetime.now()}}
+#             )
+            
+#             flash('Logged in successfully!', 'success')
+#             return redirect(url_for('index'))
+#         else:
+#             flash('Invalid email or password', 'danger')
+#             return redirect(url_for('signin'))
+    
+#     # This return statement shouldn't be reached, but it's a good fallback
+#     return render_template('signin.html')
+
+
+
+
 @app.route('/signin', methods=['GET', 'POST'])
 def signin():
     if request.method == 'GET':
-        print('salam')
         return render_template('signin.html')
     
     if request.method == 'POST':
-        # Get form data
         email = request.form.get('email')
         password = request.form.get('password')
-        remember = True if request.form.get('remember') else False
         
-        # Find user by email
-        user = mongo.db.users.find_one({'email': email})
+        # Static credentials
+        STATIC_EMAIL = "admin@example.com"
+        STATIC_PASSWORD = "1234"
         
-        # Check if user exists and password is correct
-        if user and bcrypt.check_password_hash(user['password'], password):
-            # Create session
-            session['user_id'] = str(user['_id'])
-            session['username'] = user['username']
-            session['email'] = user['email']
-            
-            # Set session expiry if remember me is not checked
-            if not remember:
-                session.permanent = True
-                app.permanent_session_lifetime = timedelta(minutes=60)
-            
-            # Update last login time
-            mongo.db.users.update_one(
-                {'_id': user['_id']},
-                {'$set': {'last_login': datetime.now()}}
-            )
-            
+        if email == STATIC_EMAIL and password == STATIC_PASSWORD:
+            session['user_id'] = "static_user"
+            session['username'] = "admin"
+            session['email'] = STATIC_EMAIL
             flash('Logged in successfully!', 'success')
             return redirect(url_for('index'))
         else:
             flash('Invalid email or password', 'danger')
             return redirect(url_for('signin'))
     
-    # This return statement shouldn't be reached, but it's a good fallback
-    return render_template('signin.html')
-            
+    return render_template('signin.html')            
     
 
 # User logout
@@ -244,7 +271,6 @@ def profile():
         sort=[('timestamp', -1)],
         limit=5
     ))
-    
     # Get total number of chats
     chat_count = mongo.db.chat_history.count_documents({'user_id': session['user_id']})
     
@@ -264,4 +290,4 @@ def login_required(route_function):
     return wrapper
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=8080, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

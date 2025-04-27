@@ -1,21 +1,23 @@
-# MediMind - AI Medical Assistant 🤖💊
-
-MediMind is an AI-powered medical assistant that provides accurate and reliable medical information using advanced natural language processing and retrieval-augmented generation.
+# IndustrialMind - AI Industrial Assistant 🤖🏭
+IndustrialMind is an AI-powered assistant that provides accurate and reliable information about industrial equipment and technology using advanced natural language processing and retrieval-augmented generation.
 
 ## Features ✨
 
-- **AI-Powered Medical Knowledge**: Get instant answers to medical questions
-- **Context-Aware Responses**: Tailored information based on your queries
-- **24/7 Availability**: Access medical information anytime, anywhere
-- **User Profiles**: Track your chat history and preferences
-- **Secure Authentication**: Protected user accounts with password hashing
+- **AI-Powered Industrial Knowledge**:  Get instant answers to questions about industrial equipment, materials, and processes.
+- **Context-Aware Responses**: Answers are based on your uploaded PDF documents (e.g., "Chapitre 01Matériel I nformatique.pdf").
+- **24/7 Availability**:  Access industrial information anytime, anywhere.
+## in this version i use email and password fix (email : admin@example.com , password : 1234) then in next version i will add mongodb database
+-Simple Authentication: Static email and password for quick access (no database required).
+- Modern Embeddings: Uses HuggingFace models and Pinecone serverless for - fast, semantic search.
+
+<!-- - **User Profiles**: Track your chat history and preferences
+- **Secure Authentication**: Protected user accounts with password hashing -->
 
 ## Tech Stack 🛠️
 
 **Backend:**
 - Python 3.9+
 - Flask (Web Framework)
-- MongoDB (Database)
 - Pinecone (Vector Database)
 - Groq API (LLM Inference)
 - HuggingFace Embeddings
@@ -28,7 +30,6 @@ MediMind is an AI-powered medical assistant that provides accurate and reliable 
 
 ### Prerequisites
 - Python 3.9+
-- MongoDB
 - Pinecone account
 - Groq API key
 
@@ -36,7 +37,7 @@ MediMind is an AI-powered medical assistant that provides accurate and reliable 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/hamzaaityoussef/MedAccessAI.git
+   git clone https://github.com/hamzaaityoussef/IndustrialChatBot.git
    cd MediMind
 
 2. Create and activate a virtual environment:
